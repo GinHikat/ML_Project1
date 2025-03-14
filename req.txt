@@ -5,4 +5,5 @@ seaborn
 statsmodels
 scikit-learn
 catboost
+dill
 -e .
