@@ -3,4 +3,6 @@ numpy
 matplotlib
 seaborn
 statsmodels
+scikit-learn
+catboost
 -e .
