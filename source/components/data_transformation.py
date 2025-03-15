@@ -46,7 +46,7 @@ class DataTransformation:
             cat_pipe = Pipeline(
                 steps = [
                     ('imputer', SimpleImputer(strategy='most_frequent')),
-                    ('Encoder', OneHotEncoder()),
+                    ('Encoder', OneHotEncoder(handle_unknown='ignore')),
                     ('scaler', StandardScaler(with_mean=False))
                 ]
             )
@@ -70,6 +70,7 @@ class DataTransformation:
             train = pd.read_csv(train_path)
             test = pd.read_csv(test_path)
             
+            
             logging.info('Load train and test from csv')
             
             prep = self.get_trans()
@@ -86,7 +87,8 @@ class DataTransformation:
             logging.info(
                f"Apply transformation for training and testing" 
             )
-            
+    
+            prep.fit(input_train)
             input_train = prep.fit_transform(input_train)
             input_test = prep.transform(input_test)
             
